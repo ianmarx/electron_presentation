@@ -6,6 +6,8 @@ const BrowserWindow = electron.BrowserWindow
 
 const path = require('path')
 const url = require('url')
+const globalShortcut = electron.globalShortcut
+const ipc = require('electron').ipcMain
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -23,7 +25,7 @@ function createWindow (framing, transparency) {
   }))
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+//  mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -39,6 +41,25 @@ function createWindow (framing, transparency) {
 // Some APIs can only be used after this event occurs.
 app.on('ready', function () {
   createWindow();
+
+  globalShortcut.register('CommandOrControl+E', () => {
+    app.quit()
+  })
+  globalShortcut.register('CommandOrControl+H', () => {
+    mainWindow.hide()
+  })
+  globalShortcut.register('CommandOrControl+S', () => {
+    mainWindow.show()
+  })
+  globalShortcut.register('CommandOrControl+N', () => {
+    createWindow(true, true)
+  })
+  globalShortcut.register('CommandOrControl+F', () => {
+    createWindow(false, false)
+  })
+  globalShortcut.register('CommandOrControl+P', () => {
+    mainWindow.webContents.send('showSurprise')
+  })
 })
 
 // Quit when all windows are closed.

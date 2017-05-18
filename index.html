@@ -3,10 +3,28 @@
   <head>
       <meta charset="UTF-8">
       <title>Electron Workshop</title>
+      <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
-    <!--Add layouts here-->
+    <button id= "min-btn">Minimize</button>
+    <button id= "max-btn">Maximize</button>
+    <button id= "close-btn">Close</button>
+
+    <div id="main-container">
+      <textarea id="search" placeholder="Search Keywork"></textarea>
+      <div>
+        <img id="img-show" src="http://www.collegedegreesearch.net/wp-content/uploads/2014/02/search.png" />
+      </div>
+      <div id="secretSection" style="display: none">
+        <p class="secret_text"> <b> CLASSIFIED  </b> </p>
+        <img id="secret_gif" src="./puppies/1.gif" />
+        <p class="secret_text"> <b> Don't tell anyone or <br/> I'll kill you </b> </p>
+      </div>
+    </div>
   </body>
 
   <!--import our renderer file here-->
+  <script>
+    require('./renderer.js')
+  </script>
 </html>
